@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Webhook Sender</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Discord Webhook Sender </h2>
+            <p> Please enter your webhook below </p>
+            <div class="form-group">
+                <label for="hook">Webhook</label>
+                <input type="text" class="form-control" id="hook">
+            </div>
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <textarea class="form-control" rows="5" id="desc"></textarea>
+            </div>
+            <div class="form-check">
+                <input onclick="add_boxes()" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Create Embed</label>
+            </div>
+            <button onclick="sendhook()" type="button" class="btn btn-success">Send</button>
+            <div class="form-group">
+                <br>
+                <label id="titlelabel" for="title">Title</label>
+                <input type="text" class="form-control" id="title">
+
+                <label id="colorlabel" for="title">Color</label>
+                <input type="text" class="form-control" id="color">
+
+                <label id="authorlabel" for="author">Author</label>
+                <input type="text" class="form-control" id="author">
+
+
+
+
+
+            </div>
+        </div>
+        <script>
+            document.getElementById("title").style.visibility = "hidden";
+            document.getElementById("titlelabel").style.visibility = "hidden";
+
+            document.getElementById("colorlabel").style.visibility = "hidden";
+            document.getElementById("color").style.visibility = "hidden";
+
+            document.getElementById("authorlabel").style.visibility = "hidden";
+            document.getElementById("author").style.visibility = "hidden";
+
+
+
+
+            function sendhook() {
+              var webhook = document.getElementById('hook').value
+              var desc = document.getElementById('desc').value
+              var title = document.getElementById('title').value
+              var color = document.getElementById('color').value
+              var author = document.getElementById('author').value
+
+
+
+
+              var xhttp = new XMLHttpRequest();
+              xhttp.open("POST", "http://127.0.0.1:5000/post", true);
+              xhttp.setRequestHeader("Content-type", "application/json");
+              xhttp.send(JSON.stringify( {"webhook":webhook, "desc":desc,"title":title,"color":color,"author":author} ) );
+
+            }
+
+
+
+            function add_boxes() {
+              if (document.getElementById("title").style.visibility === 'hidden')
+                document.getElementById("title").style.visibility = "visible";
+
+
+              else if (document.getElementById("title").style.visibility === 'visible')
+                document.getElementById("title").style.visibility = "hidden";
+                document.getElementById('title').value = '';
+
+
+              if (document.getElementById("titlelabel").style.visibility === 'hidden')
+                document.getElementById("titlelabel").style.visibility = "visible";
+
+              else if (document.getElementById("titlelabel").style.visibility === 'visible')
+                document.getElementById("titlelabel").style.visibility = "hidden";
+
+
+
+              if (document.getElementById("colorlabel").style.visibility === 'hidden')
+                document.getElementById("colorlabel").style.visibility = "visible";
+
+              else if (document.getElementById("colorlabel").style.visibility === 'visible')
+                document.getElementById("colorlabel").style.visibility = "hidden";
+
+
+
+              if (document.getElementById("color").style.visibility === 'hidden')
+                document.getElementById("color").style.visibility = "visible";
+
+              else if (document.getElementById("color").style.visibility === 'visible')
+                document.getElementById("color").style.visibility = "hidden";
+                document.getElementById('color').value = '';
+
+
+              if (document.getElementById("authorlabel").style.visibility === 'hidden')
+                document.getElementById("authorlabel").style.visibility = "visible";
+
+              else if (document.getElementById("authorlabel").style.visibility === 'visible')
+                document.getElementById("authorlabel").style.visibility = "hidden";
+                document.getElementById('authorlabel').value = '';
+
+
+              if (document.getElementById("author").style.visibility === 'hidden')
+                document.getElementById("author").style.visibility = "visible";
+
+              else if (document.getElementById("author").style.visibility === 'visible')
+                document.getElementById("author").style.visibility = "hidden";
+                document.getElementById('author').value = '';
+
+
+
+
+            }
+        </script>
+    </body>
+</html>
